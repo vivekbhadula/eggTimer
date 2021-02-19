@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -42,8 +43,28 @@ class ViewController: UIViewController {
         else {
             timer.invalidate()
             titleLabel.text = "DONE"
-            
+            playSound()
         }
     }
+    
+    var player = AVAudioPlayer()
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player.play()
+    }
+    
+//    func playsound() {
+//        let path = Bundle.main.path(forResource: "alarm_sound", ofType : "mp3")!
+//        let url = URL(fileURLWithPath : path)
+//        do {
+//            player = try AVAudioPlayer(contentsOf: url)
+//            player.play()
+//        }
+//        catch {
+//            print ("There is an issue with this code!")
+//        }
+//    }
     
 }
